@@ -1,0 +1,24 @@
+<description>
+Gathers data from both Jira and Google Drive (searching, reading, and summarizing matching documents) to generate a comprehensive, unified project/ticket context.
+</description>
+
+<instructions>
+When this command is invoked with a ticket number/ID (e.g., /pooja AH-972):
+1. Extract the ticket ID (e.g., AH-972) from the arguments.
+2. Concurrently/in parallel, initiate both of the following actions:
+   a. **Jira Ticket Fetch**: Follow the logic of `jira.prompt`. Call the Atlassian MCP server's `mcp_atlassian_getJiraIssue` tool with the `issueIdOrKey` argument set to the ticket ID, and the `cloudId` set to `f402e97d-af06-4011-8ae6-478d847f5626`.
+   b. **Google Drive Document Search & Summarization**: Follow the logic of `gdrive_search.prompt`.
+      i. Call the `gdrive` MCP server's `mcp_gdrive_search` tool with the ticket ID as the query parameter.
+      ii. Filter the results manually to only keep files whose titles contain the ticket ID. This filtering must be completely case-insensitive.
+      iii. For each matching file, call the `mcp_gdrive_read_file` tool to retrieve its content, and generate a clear summary.
+3. Once all information is gathered, analyze the Jira ticket details and the Google Drive document contents to fully understand the requirements and context.
+4. Based on this unified context and requirements, generate a list of potential test cases.
+5. In your final output, present ONLY the markdown table of test cases and absolutely nothing else (no summaries, introductory text, metadata, or other sections). Use the following columns for the table:
+   - Test Case Number
+   - Summary
+   - Type (positive/negative)
+   - Objective
+   - Test Steps
+   - Test Data
+   - Expected Result
+</instructions>

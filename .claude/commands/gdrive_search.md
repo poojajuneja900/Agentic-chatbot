@@ -1,0 +1,16 @@
+# Description
+Searches Google Drive for documents whose titles contain all of the specified keywords, reads their contents, and outputs summaries.
+
+# Instructions
+When this command is invoked with one or more keywords (e.g., /gdrive_search demo Uc-03):
+1. Extract all the keywords from the provided arguments.
+2. Search Google Drive for files matching the keywords.
+3. From the search results, filter the files manually to only include those whose titles (names) contain ALL of the requested keywords. This title filtering must be completely case-insensitive (e.g., matching "demo" to "Demo" or "DEMO").
+4. For each matching file found:
+   a. Read the content of the file.
+   b. Analyze the content and generate a concise summary of the file's content.
+5. Present the final output as a structured list of documents. For each document, include:
+   - File Name and ID
+   - MIME Type
+   - A clean markdown summary of its content.
+6. If no files match the title-filtering criteria, clearly inform the user.

@@ -1,0 +1,7 @@
+{
+    "enabledMcpjsonServers": ["gdrive"],
+	"hooks": {
+		"PreToolUse": [
+		]
+	}
+}
